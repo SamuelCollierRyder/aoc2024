@@ -1,6 +1,7 @@
 with open("input.txt") as f:
     lines = f.readlines()
     lines = [line.strip() for line in lines]
+    lines = [list(line) for line in lines]
 
 
 current_pos = (0, 0)
@@ -14,7 +15,6 @@ for i in range(len(lines)):
         current_pos = (i, lines[i].index("^"))
         break
 
-print(current_pos)
 while True:
     seen_positions.add(current_pos)
     seen_positions_dir.add((current_pos, current_direction))
@@ -22,7 +22,7 @@ while True:
         next_pos = (current_pos[0] - 1, current_pos[1])
 
     elif current_direction == "right":
-        next_pos = (current_pos[0], current_pos[1]+ 1)
+        next_pos = (current_pos[0], current_pos[1] + 1)
 
     elif current_direction == "down":
         next_pos = (current_pos[0] + 1, current_pos[1])
@@ -34,11 +34,10 @@ while True:
         break
 
     if lines[next_pos[0]][next_pos[1]] == "#":
-        current_direction = possible_directions[(possible_directions.index(current_direction) + 1) % 4]
+        current_direction = possible_directions[
+            (possible_directions.index(current_direction) + 1) % 4
+        ]
         continue
-
-    if (next_pos, current_direction) in seen_positions_dir:
-        break
     current_pos = next_pos
 
 print(len(seen_positions))
