@@ -2,7 +2,6 @@ with open("input.txt") as f:
     text = f.read().strip()
     numbers = text.split(" ")
 
-print(numbers)
 for i in range(25):
     new_numbers = []
     for number in numbers:
