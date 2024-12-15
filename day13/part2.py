@@ -1,3 +1,4 @@
+import math
 with open("example_input.txt") as file:
     text = file.read()
     s = text.split("\n")
@@ -39,6 +40,9 @@ for a in range(len(x_goal)):
     gcd_x = math.gcd(x1, x2)
     gcd_y = math.gcd(y1, y2)
 
+    if x_g % gcd_x != 0 or y_g % gcd_y != 0:
+        continue
+
     matches = []
     m_x = min(x1, x2)
     m_y = min(y1, y2)
@@ -46,14 +50,10 @@ for a in range(len(x_goal)):
 
     found_val = False
     for i in range(b):
-        k_range = min((x_g - x1*i)//x2, (y_g - y1*i)//y2)
-        for k in range(k_range, b):
-            if x1*i + x2*k == x_g and y1*i + y2*k == y_g:
-                s += i*3+k
-                found_val = True
+        nx_g = x_g - i * x1
+        if nx_g % x2 == 0:
+            x2_step = nx_g // x2
+            if x2_step * y2 == y_g - i * y1:
+                s += i*3+x2_step
                 break
-
-        if found_val:
-            break
-
 print(s)

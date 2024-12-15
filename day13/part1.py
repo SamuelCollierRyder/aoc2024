@@ -42,15 +42,11 @@ for a in range(len(x_goal)):
     if x_g % gcd_x != 0 or y_g % gcd_y != 0:
         continue
 
-    found_val = False
     for i in range(100):
-        for k in range(100):
-            if x1*i + x2*k == x_g and y1*i + y2*k == y_g:
-                s += i*3+k
-                found_val = True
+        nx_g = x_g - i * x1
+        if nx_g % x2 == 0:
+            x2_step = nx_g // x2
+            if x2_step * y2 == y_g - i * y1:
+                s += i*3+x2_step
                 break
-
-        if found_val:
-            break
-
 print(s)
