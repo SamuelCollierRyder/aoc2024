@@ -37,12 +37,6 @@ for a in range(len(x_goal)):
     x_g = x_goal[a] + 10000000000000
     y_g = y_goal[a] + 10000000000000
 
-    gcd_x = math.gcd(x1, x2)
-    gcd_y = math.gcd(y1, y2)
-
-    if x_g % gcd_x != 0 or y_g % gcd_y != 0:
-        continue
-
     matches = []
     m_x = min(x1, x2)
     m_y = min(y1, y2)
