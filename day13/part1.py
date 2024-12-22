@@ -1,5 +1,3 @@
-import math
-
 with open("input.txt") as file:
     text = file.read()
     s = text.split("\n")
@@ -41,6 +39,9 @@ for a in range(len(x_goal)):
         if nx_g % x2 == 0:
             x2_step = nx_g // x2
             if x2_step * y2 == y_g - i * y1:
+                print(i, x2_step)
+                print(a)
                 s += i*3+x2_step
+                quit()
                 break
 print(s)
